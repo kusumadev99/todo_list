@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-List</title>
+    <style>
+        .md{
+            background:linear-gradient(deeppink,pink);
+            width: 1200px;;
+            height:100vh;
+          
+        }
+        .cd{
+       
+       width:400px;
+       height:60px;
+            background-color: aliceblue;
+            position: relative;
+            left: 400px;
+            top: 30px;
+            /* padding:40px 30px 70px; */
+            border-radius: 10px;
+        }
+        .input{
+       
+            padding-left: 80px;
+           position: relative;
+           bottom: 15px;
+           background: transparent;
+           border:none;
+           outline: none;
+        }
+        .dis{
+            display: flex;
+           
+        }
+        .btn{
+            position: relative;
+           bottom: 15px;
+          
+          /* background-color: blueviolet;
+          color:blueviolet; */
+           padding-left: 10px;
+        }
+        .task{
+            padding-left:500px ;
+            padding-top: 40px;
+            list-style:circle;
+        }
+        .del{
+            display: flex;
+        }
+        img{
+            height:30px;
+            width:30px;
+            display: none;
+            padding-left: 180px;
+            padding-top: 50px;
+        }
+        .del button {
+    margin-left: 150px; 
+    background:linear-gradient(yellow,skyblue);
+}
+    </style>
+</head>
+<body>
+    <div class="md">
+  <div class="cd">
+<h3 style="padding-left: 200px;">to-do-list</h3>
+ <div class="dis">
+  <div class="input">
+    <input type="text"placeholder="enter your task">
+  </div>
+  <div class="btn">
+    <button id="btn" onclick="addtask()">add</button>
+  </div>
+  </div>
+</div>
+<div class="del">
+<ul  class="task">
+    </ul>
+    <img src="data:image/jpeg;base64,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"/>
+</div>
+    </div>
+
+<script>
+  
+  
+ 
+
+
+
+
+function addtask() {
+    const input1 = document.getElementsByClassName('input')[0].getElementsByTagName('input')[0];
+    const task = document.getElementsByClassName('task')[0];
+    if (input1.value === "") {
+        alert("Enter the task");
+    } else {
+        let container = document.createElement("div"); 
+        container.style.display="flex"
+        
+        let li = document.createElement("li");
+        let del = document.createElement("button");
+        del.innerText = "delete";
+        // del.style.position="Relative"
+        // del.style.right="100px;"
+        del.addEventListener('click', function() {
+            container.remove(); 
+        });
+        li.innerHTML = input1.value;
+        
+        container.appendChild(li); 
+        container.appendChild(del); 
+        task.appendChild(container); 
+    }
+}
+
+
+</script>
+</body>
+</html>
